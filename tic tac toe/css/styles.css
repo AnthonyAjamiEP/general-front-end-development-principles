@@ -21,7 +21,7 @@ body {
 
 .players .player .image img {
     height: 150px;
-    border-radius: 50%;
+    border-radius: 35%;
 }
 
 .players .player .name {
@@ -32,8 +32,22 @@ body {
     font-size: 70px;
 }
 
-.grid {
+#msg {
+    border: 1px solid green;
+    background-color: greenyellow;
+    color: green;
+    text-align: center;
     width: 50%;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-weight: bold;
+    font-size: 2rem;
+    display: none;
+    /*visibility: hidden;*/
+}
+
+.grid {
+    width: 40%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -44,7 +58,25 @@ body {
     display: flex;
     border: 1px solid grey;
     text-align: center;
-    height: 100px;
+    height: 150px;
     align-items: center;
     justify-content: center;
+}
+
+.grid .cell:hover {
+    background-color: blanchedalmond;
+    cursor: pointer;
+}
+
+.restart {
+    border: 1px solid orange;
+    background-color: orangered;
+    color: whitesmoke;
+    text-align: center;
+    width: 30%;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-weight: bold;
+    font-size: 2rem;
+    display: none;
 }
