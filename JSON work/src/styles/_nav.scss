@@ -1,0 +1,19 @@
+#nav {
+    background-color: $primary-color;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+
+    a {
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        color: $secondary-color;
+    }
+
+    a:hover {
+        background-color: $secondary-color;
+        color: $primary-color;
+    }
+}

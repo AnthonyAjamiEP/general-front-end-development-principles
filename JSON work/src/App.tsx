@@ -11,10 +11,12 @@ const App = () => {
       <Link to='/'>Home</Link>
       <Link to='/post'>Posts</Link>
     </div>
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/post' element={<Post />} />
-    </Routes>
+    <div className='container'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/post' element={<Post />} />
+      </Routes>
+    </div>
   </>)
 }
 

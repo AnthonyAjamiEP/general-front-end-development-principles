@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import { directive } from 'vue/types/umd'
 
 const PostComponent = () => {
 
+    type Post = {
+        userId: number,
+        id: number,
+        title: string,
+        body: string
+    }
+
+    type PostResponseJson = {
+        result: Post[],
+        total: number
+    }
+
+    const [isLoading, setIsLoading] = useState(true)
     const [posts, setPost] = useState([])
 
     useEffect(() => {
@@ -16,9 +30,10 @@ const PostComponent = () => {
     }, [])
 
     return (<>
-        <ul>
-            {posts.map((post, index) =>
-                <li key={`post-${index}`}>
+        <div id='listofposts'>List of Posts:</div>
+        <ul id='posts'>
+            {posts.map((post: Post, index) =>
+                <li className='post' key={`post-${index}`}>
                     {"Post ID: " + post.id + " Title: " + post.title + " Body: " + post.id}
                 </li>)
             }
