@@ -47,7 +47,7 @@ app.get('/', function (request, response) {
 })
 
 app.post('/test', (request, response) => {
-    const {name} = request.body
+    const { name } = request.body
 
     if (!name && name == "") {
         return response.status(500).json('You have to give a name')
@@ -67,5 +67,5 @@ app.use('/users', userRouter)
 
 const PORT = 4500
 app.listen(PORT, () => {
-    console.log('Server running on http://127.0.0.1:' + PORT)
+    console.log('Server running on http://localhost:' + PORT)
 })
