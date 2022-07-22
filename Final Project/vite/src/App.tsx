@@ -4,32 +4,25 @@ import { Routes, Route, Link } from "react-router-dom"
 import Home from "./pages/Home"
 import PostsPage from './pages/PostsPage'
 import MessagesPage from './pages/MessagesPage'
+import MessagesDeletePage from './pages/MessagesDeletePage'
+import MessagesEditPage from './pages/MessagesEditPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
-import { AuthContext } from './contexts'
-import AuthProvider from './contexts/Auth'
+import Default from './layouts/Default'
+import Auth from './layouts/Auth'
 
 const App = () => {
-  return (<AuthProvider>
-    <div id="nav">
-      <Link to='/'>Home</Link>
-      <Link to='/post'>Posts</Link>
-      <Link to='/message'>Messages</Link>
-      <Link to="/register">Register</Link>
-      <Link to="/login">Login</Link>
-
-    </div>
-    <div className='container'>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/post" element={<PostsPage />} />
-        <Route path="/message" element={<MessagesPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-
-      </Routes>
-    </div>
-  </AuthProvider>)
+  return (<>
+    <Routes>
+      <Route path="/" element={<Default><Home /></Default>} />
+      <Route path="/posts" element={<Default><PostsPage /></Default>} />
+      <Route path="/messages" element={<Default><MessagesPage /></Default>} />
+      <Route path="/messages/:messageId/delete" element={<Default><MessagesDeletePage /></Default>} />
+      <Route path="/messages/:messageId/edit" element={<Default><MessagesEditPage /></Default>} />
+      <Route path="/register" element={<Auth><RegisterPage /></Auth>} />
+      <Route path="/login" element={<Auth><LoginPage /></Auth>} />
+    </Routes>
+  </>)
 }
 
 export default App

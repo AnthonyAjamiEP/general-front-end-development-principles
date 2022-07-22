@@ -1,35 +1,78 @@
-import { RegisterParams, LoginParams } from '../types/auth'
+import { registerParams, loginParams } from '../types/auth'
 import axios, { AxiosError } from 'axios'
 
-export const register = async (data: RegisterParams): Promise<boolean> => {
+export const register = async (data: registerParams): Promise<boolean> => {
     try {
-        await axios.post('http://localhost:4500/register', data)
-        console.log(data)
+        await axios.post('http://127.0.0.1:4500/register', data, {
+            withCredentials: true
+        })
         return true
     } catch (error: any) {
         if ((error as AxiosError).response?.status === 500) {
-            console.error(error.response?.data?.msg);
+            console.error(error.response?.data?.msg)
         } else {
-            console.error(error);
+            console.error(error)
         }
         return false
     }
 }
 
-export const login = async (data: LoginParams) => {
+export const login = async (data: loginParams) => {
     try {
-        const res = await axios.post('http://localhost:4500/login', data)
+        await axios.post('http://127.0.0.1:4500/login', data, {
+            withCredentials: true
+        })
         return {
             status: true,
-            email: data.email
+            msg: 'Login Successful'
         }
-
     } catch (error: any) {
         if ((error as AxiosError).response?.status === 500) {
-            console.error(error.response?.data?.msg);
+            console.error(error.response?.data?.msg)
         } else {
-            console.error(error);
+            console.error(error)
         }
+        return {
+            status: false,
+            msg: 'Login Failed'
+        }
+    }
+}
+
+export const getMe = async () => {
+    try {
+        const res = await axios.get('http://127.0.0.1:4500/me', {
+            withCredentials: true
+        })
+        return res.data
+    } catch (error: any) {
+        if ((error as AxiosError).response?.status === 500) {
+            console.error(error.response?.data?.msg)
+        }
+        else {
+            console.error(error)
+        }
+
+        return {
+            status: true,
+            msg: error.response?.data?.msg
+        }
+    }
+}
+
+export const logout = async () => {
+    try {
+        const res = await axios.get('http://127.0.0.1:4500/logout', {
+            withCredentials: true
+        })
+        return res.data
+    } catch (error: any) {
+        if ((error as AxiosError).response?.status === 500) {
+            console.error(error.response?.data?.msg)
+        } else {
+            console.error(error)
+        }
+
         return {
             status: false,
             msg: error.response?.data?.msg

@@ -1,10 +1,10 @@
-export type RegisterParams = {
-    username: string,
+export type loginParams = {
     email: string,
     password: string
 }
 
-export type LoginParams = {
+export type registerParams = {
+    username: string,
     email: string,
     password: string
 }

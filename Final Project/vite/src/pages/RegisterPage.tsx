@@ -1,12 +1,12 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
-import { RegisterParams } from '../types/auth'
+import { registerParams } from '../types/auth'
 import { register } from '../services/auth'
 
-const RegisterPage = () => {
+const ResgiterPage = () => {
     let navigate = useNavigate()
-    const [form, setForm] = useState<RegisterParams>({
+    const [form, setForm] = useState<registerParams>({
         username: '',
         email: '',
         password: ''
@@ -26,6 +26,7 @@ const RegisterPage = () => {
 
     return (
         <form onSubmit={onSubmitHandler}>
+            <h1>Register your account</h1>
             <div className="form-row">
                 <label>Username</label>
                 <input
@@ -59,8 +60,12 @@ const RegisterPage = () => {
             <div className="form-row">
                 <button type='submit'>Send</button>
             </div>
+
+            <div className="form-row">
+                <Link to="/login">Already have an account ?</Link>
+            </div>
         </form>
     )
 }
 
-export default RegisterPage
+export default ResgiterPage

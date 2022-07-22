@@ -1,19 +1,17 @@
-import { useState, ChangeEvent, FormEvent, useContext } from 'react'
-import { useNavigate, Link, Navigate } from "react-router-dom"
+import React, { useState, ChangeEvent, FormEvent, useContext } from 'react'
+import { useNavigate, Link } from "react-router-dom"
 
-import { LoginParams } from '../types/auth'
+import { loginParams } from '../types/auth'
 import { login } from '../services/auth'
 import { AuthContext } from '../contexts/Auth'
 
-
 const LoginPage = () => {
     let navigate = useNavigate()
-    const [form, setForm] = useState({
+    const context = useContext(AuthContext);
+    const [form, setForm] = useState<loginParams>({
         email: '',
         password: ''
     })
-
-    const context = useContext(AuthContext)
     const [msg, setMsg] = useState('')
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,12 +23,10 @@ const LoginPage = () => {
         event.preventDefault()
 
         const res = await login(form)
-        console.log(res)
 
         if (res.status) {
-            context.isAuth = true
+            context.updateAuth(true)
             navigate('/')
-
         } else {
             setMsg(res.msg)
         }
@@ -38,6 +34,7 @@ const LoginPage = () => {
 
     return (
         <form onSubmit={onSubmitHandler}>
+            <h1>Login to service</h1>
 
             {msg != '' && <div>{msg}</div>}
 
@@ -66,9 +63,8 @@ const LoginPage = () => {
             </div>
 
             <div className="form-row">
-                <Link to={'/register'}> <label>Don't have an account yet? Sign up</label></Link>
+                <Link to="/register">Don't have any account ?</Link>
             </div>
-
         </form>
     )
 }
